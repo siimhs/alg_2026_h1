@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Sheep",
+            "request": "launch",
+            "mainClass": "Sheep",
+            "projectName": ""
+        },
+        {
+            "type": "java",
+            "name": "Käivita App",
+            "request": "launch",
+            "mainClass": "Sheep",
+            "projectName": "h1"
+        }
+    ]
+}
+

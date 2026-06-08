@@ -1,61 +1,87 @@
-# README #
+# Homework 1
 
-This repository is read-only, make a private fork in the bitbucket server
-for your own files. Clone this forked repository to your local computer and solve
-the task.
+This project is configured to work offline using local libraries in the `lib/` directory. All code resides in the default package.
 
-See on esimese kodutöö failide hoidla, mida saab kasutada ainult algseks lugemiseks.
-Töötamiseks looge endale isiklik repositoorium, näiteks privaatne 'fork' bitbucket serverisse, millest saate luua klooni oma arvutisse.
-
-## Command line examples. Näidete kasutamine käsurealt ##
-#### Compilation. Kompileerimine: ####
+## 📂 Project Structure
 
 ```
-#!bash
-
-javac -cp src src/Sheep.java
+h1/
+├── src/main/java/       # Application source code
+│   └── Sheep.java
+├── src/test/java/       # Test code
+│   ├── SheepTest.java
+│   └── Aout.java        # Test helper utilities
+├── lib/                 # Local libraries
+│   ├── junit-4.13.2.jar
+│   └── hamcrest-core-1.3.jar
+├── bin/                 # Compiled class files
+└──
 ```
 
-#### Execution. Käivitamine: ####
+## 🛠️ Command Line Instructions
 
-```
-#!bash
+Since the project uses the default package and local JAR files, commands differ by operating system (path separator: Windows `;` vs Linux/Mac `:`).
 
-java -cp src Sheep
-```
+### Windows (Command Prompt / PowerShell)
 
+```bash
+# 1. Compile main code
+javac -d bin src/main/java/*.java
 
-### Usage of tests. Testide kasutamine ###
-#### Compilation of a test. Testi kompileerimine: ####
+# 2. Compile tests (requires lib folder and main code in bin)
+javac -d bin -cp "lib/*;bin" src/test/java/*.java
 
-```
-#!bash
+# 3. Run application
+java -cp bin Sheep
 
-javac -encoding utf8 -cp 'src:test:test/junit-4.13.2.jar:test/hamcrest-core-1.3.jar' test/SheepTest.java
-
-```
-In Windows replace colons by semicolons. Sama Windows aknas (koolonite asemel peavad olema semikoolonid):
-
-```
-#!bash
-
-javac -encoding utf8 -cp 'src;test;test/junit-4.13.2.jar;test/hamcrest-core-1.3.jar' test/SheepTest.java
-
-
+# 4. Run JUnit tests
+java -cp "bin;lib/*" org.junit.runner.JUnitCore SheepTest
 ```
 
-#### Running a test. Testi käivitamine: ####
+### Linux and macOS
 
+```bash
+# 1. Compile main code
+javac -d bin src/main/java/*.java
+
+# 2. Compile tests (requires lib folder and main code in bin)
+javac -d bin -cp "lib/*:bin" src/test/java/*.java
+
+# 3. Run application
+java -cp bin Sheep
+
+# 4. Run JUnit tests
+java -cp "bin:lib/*" org.junit.runner.JUnitCore SheepTest
 ```
-#!bash
 
-java -cp 'src:test:test/junit-4.13.2.jar:test/hamcrest-core-1.3.jar' org.junit.runner.JUnitCore SheepTest
-```
+---
 
-The same for Windows. Sama Windows aknas (koolonite asemel semikoolonid):
+## 📋 Task Description
 
-```
-#!bash
+Olgu massiivis juhuslikult läbisegi sikud (goat) ja lambad (sheep).
+Koostage võimalikult kiire meetod, mis järjestaks massiivi ümber nii,
+et kõik sikud oleksid massiivi alguses ja kõik lambad lõpus. 
+Arvestage ka piirjuhtumiga, et kõik loomad on üht sorti.
+Kui kasutate mingeid allikaid, siis lisage viited programmi algusse 
+kommentaaride vormis.
+Ei ole mõistlik kasutada List andmetüüpe, sest need annavad 
+väga aeglase tulemuse.
 
-java -cp 'src;test;test/junit-4.13.2.jar;test/hamcrest-core-1.3.jar' org.junit.runner.JUnitCore SheepTest
-```
+An array contains sheep and goats in random order. 
+Write a possibly fast method to rearrange the array, 
+so that all goats are at the beginning and all sheep 
+are at the end of the array. 
+Consider the case when all animals are the same kind.
+If any sources are used, they must be cited (in form of comments
+at the beginning of the code).
+Do not use Java List types (lists are very slow for this task).
+
+enum Animal {sheep, goat};
+
+public static void reorder (Animal[] animals)
+
+---
+
+## ⚙️ Requirements
+
+- **Java 8** or higher
