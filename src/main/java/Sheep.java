@@ -28,17 +28,12 @@ public class Sheep {
    }
 
    public static void reorder(Animal[] animals) {
-      // take first animal
-      // if goat, take move to next or end.
-      // else find first sheep from back until sheep found or you have reached to same
-      // index (then end)
-
       int lastSheep = -1;
       Animal tmp = Animal.goat;
 
       for (int i = 0; i < animals.length; i++) {
          if (animals[i] == Animal.sheep) {
-            for (int j = getStart(animals.length-1, lastSheep); j >= i; j--) {
+            for (int j = findLastSheepPos(animals.length-1, lastSheep); j >= i; j--) {
                if (j == i) {
                   return;
                }
@@ -54,11 +49,11 @@ public class Sheep {
       }
    }
 
-   private static int getStart(int i, int s){
-      if( s == -1 ){
-         return i;
+   private static int findLastSheepPos(int currentPos, int storedSheepPos){
+      if( storedSheepPos == -1 ){
+         return currentPos;
       } else {
-         return s;
+         return storedSheepPos;
       }
    }
 
